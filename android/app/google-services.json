@@ -1,0 +1,33 @@
+{
+  "project_info": {
+    "project_number": "1061267795344",
+    "project_id": "cobhs-d0c95",
+    "storage_bucket": "cobhs-d0c95.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061267795344:android:0cc5e41f39b73bcc16d715",
+        "android_client_info": {
+          "package_name": "com.cob.hs",
+          "certificate_hash": [
+            "CF02FB68207476E968A57550A461ACF290A171D9",
+            "6E480AB0520485AD152FB54B567F3403CF8C6D049F16AC2FB14034C559C8B2C8"
+          ]
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0I-sbEpWG55mPqEJ9NNHYPbBXtZIgXaI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

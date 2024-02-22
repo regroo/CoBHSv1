@@ -1,4 +1,4 @@
-package com.example.cobhs
+package com.cob.hs
 
 import io.flutter.embedding.android.FlutterActivity
 

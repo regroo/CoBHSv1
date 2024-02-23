@@ -4,7 +4,8 @@ import 'cancelBooking.dart';
 import 'createPayslip.dart';
 import 'changeDetails.dart';
 import 'createAccount.dart';
-import 'package:cobhs/admin/deleteAccount.dart';
+import 'deleteAccount.dart';
+import 'changePass.dart';
 
 const Color darkBlue = Color(0xac3884d4);
 const Color lightBlue = Color(0x485788b7);
@@ -81,6 +82,15 @@ class MainAPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => DeleteAccountPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text("Change Password"),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ChangePassPage()),
                   );
                 },
               ),

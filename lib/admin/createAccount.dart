@@ -20,58 +20,70 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       appBar: AppBar(
         title: Text("Create Account"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: _usernameController,
-              decoration: InputDecoration(labelText: 'Username'),
-            ),
-            SizedBox(height: 10),
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: InputDecoration(labelText: 'Password'),
-            ),
-            SizedBox(height: 10),
-            TextField(
-              controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
-            ),
-            SizedBox(height: 10),
-            DropdownButtonFormField<String>(
-              value: _userType,
-              items: [
-                DropdownMenuItem<String>(
-                  value: 'admin',
-                  child: Text('Admin'),
-                ),
-                DropdownMenuItem<String>(
-                  value: 'customer',
-                  child: Text('Customer'),
-                ),
-                DropdownMenuItem<String>(
-                  value: 'student',
-                  child: Text('Student'),
-                ),
-              ],
-              onChanged: (value) {
-                setState(() {
-                  _userType = value!;
-                });
-              },
-              decoration: InputDecoration(labelText: 'User Type'),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                createAccount();
-              },
-              child: Text('Create Account'),
-            ),
-          ],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xac3884d4),
+              Color(0x485788b7), // Adjust light blue color
+            ],
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                controller: _usernameController,
+                decoration: InputDecoration(labelText: 'Username'),
+              ),
+              SizedBox(height: 10),
+              TextField(
+                controller: _passwordController,
+                obscureText: true,
+                decoration: InputDecoration(labelText: 'Password'),
+              ),
+              SizedBox(height: 10),
+              TextField(
+                controller: _emailController,
+                decoration: InputDecoration(labelText: 'Email'),
+              ),
+              SizedBox(height: 10),
+              DropdownButtonFormField<String>(
+                value: _userType,
+                items: [
+                  DropdownMenuItem<String>(
+                    value: 'admin',
+                    child: Text('Admin'),
+                  ),
+                  DropdownMenuItem<String>(
+                    value: 'customer',
+                    child: Text('Customer'),
+                  ),
+                  DropdownMenuItem<String>(
+                    value: 'student',
+                    child: Text('Student'),
+                  ),
+                ],
+                onChanged: (value) {
+                  setState(() {
+                    _userType = value!;
+                  });
+                },
+                decoration: InputDecoration(labelText: 'User Type'),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  createAccount();
+                },
+                child: Text('Create Account'),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -16,34 +16,52 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
       appBar: AppBar(
         title: Text("Delete Account"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: _usernameController,
-              decoration: InputDecoration(labelText: 'Username'),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _buttonClicked
-                  ? () {
-                      deleteAccount();
-                    }
-                  : () {
-                      setState(() {
-                        _buttonClicked = true;
-                      });
-                    },
-              style: ElevatedButton.styleFrom(
-                primary: _buttonClicked
-                    ? Colors.red
-                    : Theme.of(context).primaryColor,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xac3884d4),
+              Color(0x485788b7), // Adjust light blue color
+            ],
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                controller: _usernameController,
+                onChanged: (value) {
+                  setState(() {
+                    _buttonClicked = false; // Reset button state
+                  });
+                },
+                decoration: InputDecoration(labelText: 'Username'),
               ),
-              child: Text(_buttonClicked ? 'Confirm Delete' : 'Delete Account'),
-            ),
-          ],
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _buttonClicked
+                    ? () {
+                        deleteAccount();
+                      }
+                    : () {
+                        setState(() {
+                          _buttonClicked = true;
+                        });
+                      },
+                style: ElevatedButton.styleFrom(
+                  primary: _buttonClicked
+                      ? Colors.red
+                      : Theme.of(context).primaryColor,
+                ),
+                child:
+                    Text(_buttonClicked ? 'Confirm Delete' : 'Delete Account'),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:cobhs/firebase/firebase_options.dart';
 import 'package:cobhs/start/loginPage.dart';
+import 'package:cobhs/globals.dart';
 
 const Color darkBlue = Color(0xac3884d4);
 const Color lightBlue = Color(0x485788b7);
@@ -9,8 +10,8 @@ const Color lightBlue = Color(0x485788b7);
 const messageLimit = 30;
 
 void main() async {
-  WidgetsFlutterBinding
-      .ensureInitialized(); // Required for Firebase initialization
+  WidgetsFlutterBinding.ensureInitialized();
+  Globals.currentUsername = 'none';
   runApp(MyApp());
 }
 

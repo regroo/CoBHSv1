@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cobhs/start/loginPage.dart';
 
 const Color darkBlue = Color(0xac3884d4);
 const Color lightBlue = Color(0x485788b7);
@@ -40,6 +41,15 @@ class MainHPage extends StatelessWidget {
                 title: Text("View Feedback"),
                 onTap: () {
                   // Navigate to the change details page
+                },
+              ),
+              ListTile(
+                title: Text("Switch Accounts"),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
                 },
               ),
             ],

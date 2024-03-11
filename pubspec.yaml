@@ -15,6 +15,7 @@ dependencies:
   cloud_firestore: ^4.8.4
   intl: ^0.18.1
   firebase_analytics: ^10.1.6
+  flutter_datetime_picker: ^1.5.1
   change_app_package_name: ^1.1.0
 
 dev_dependencies:

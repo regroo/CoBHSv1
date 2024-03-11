@@ -1,11 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
 import 'registerPage.dart';
 import 'package:cobhs/admin/mainAPage.dart';
 import 'package:cobhs/customer/mainCPage.dart';
 import 'package:cobhs/student/mainHPage.dart';
+import 'package:cobhs/globals.dart';
 
 const Color darkBlue = Color(0xac3884d4);
 const Color lightBlue = Color(0x485788b7);
@@ -45,12 +46,18 @@ class _LoginPageState extends State<LoginPage> {
 
         // Compare hashed passwords
         if (userPasswordHash == hashedPassword && userType == 0) {
+          Globals.currentUsername =
+              enteredUsername; // Access Globals and set currentUsername
           _showMessage(context, "Admin Login Successful!");
         }
         if (userPasswordHash == hashedPassword && userType == 1) {
+          Globals.currentUsername =
+              enteredUsername; // Access Globals and set currentUsername
           _showMessage(context, "Customer Login Successful!");
         }
         if (userPasswordHash == hashedPassword && userType == 2) {
+          Globals.currentUsername =
+              enteredUsername; // Access Globals and set currentUsername
           _showMessage(context, "Student Login Successful!");
         }
         if (userPasswordHash != hashedPassword) {

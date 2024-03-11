@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:cobhs/start/loginPage.dart';
+import 'viewBookingsPage.dart';
+import 'createBookingPage.dart';
+import 'cancelBookingPage.dart';
+import 'submitFeedbackPage.dart';
 
 const Color darkBlue = Color(0xac3884d4);
 const Color lightBlue = Color(0x485788b7);
@@ -21,25 +26,49 @@ class MainCPage extends StatelessWidget {
               ListTile(
                 title: Text("View Bookings"),
                 onTap: () {
-                  // Navigate to the approve feedback page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ViewBookingsPage()),
+                  );
                 },
               ),
               ListTile(
                 title: Text("Create Booking"),
                 onTap: () {
-                  // Navigate to the cancel booking page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CreateBookingPage()),
+                  );
                 },
               ),
               ListTile(
                 title: Text("Cancel Booking"),
                 onTap: () {
-                  // Navigate to the create payslip page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CancelBookingPage()),
+                  );
                 },
               ),
               ListTile(
                 title: Text("Submit Feedback"),
                 onTap: () {
-                  // Navigate to the change details page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SubmitFeedbackPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text("Switch Accounts"),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
                 },
               ),
             ],

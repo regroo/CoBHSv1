@@ -1,3 +1,4 @@
+import 'package:cobhs/start/loginPage.dart';
 import 'package:flutter/material.dart';
 import 'approveFeedback.dart';
 import 'cancelBooking.dart';
@@ -6,6 +7,7 @@ import 'changeDetails.dart';
 import 'createAccount.dart';
 import 'deleteAccount.dart';
 import 'changePass.dart';
+import 'setBookingTimes.dart';
 
 const Color darkBlue = Color(0xac3884d4);
 const Color lightBlue = Color(0x485788b7);
@@ -91,6 +93,24 @@ class MainAPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => ChangePassPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text("Set Booking times"),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SetBookingTimes()),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text("Switch Accounts"),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
                   );
                 },
               ),

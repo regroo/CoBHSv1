@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+const Color darkBlue = Color(0xff555dbe);
+const Color lightBlue = Color(0xFF8C9EFF);
+
 class ChangeDetailsPage extends StatefulWidget {
   @override
   _ChangeDetailsPageState createState() => _ChangeDetailsPageState();
@@ -16,19 +19,11 @@ class _ChangeDetailsPageState extends State<ChangeDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: darkBlue,
         title: Text("Change Details"),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xac3884d4),
-              Color(0x485788b7)
-            ], // Gradient colors from dark blue to light blue
-          ),
-        ),
+        color: darkBlue,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -36,35 +31,77 @@ class _ChangeDetailsPageState extends State<ChangeDetailsPage> {
             children: [
               TextField(
                 controller: _usernameController,
-                decoration: InputDecoration(labelText: 'Username'),
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: 'Username',
+                  labelStyle: TextStyle(color: Colors.white),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
               ),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   searchUser();
                 },
+                style: ElevatedButton.styleFrom(
+                  primary: lightBlue,
+                ),
                 child: Text('Search User'),
               ),
               if (_showUserDetails) ...[
                 SizedBox(height: 20),
-                Text('Current Email: ${_emailController.text}'),
+                Text(
+                  'Current Email: ${_emailController.text}',
+                  style: TextStyle(color: Colors.white),
+                ),
                 SizedBox(height: 10),
-                Text('Current User Type: ${_userTypeController.text}'),
-                SizedBox(height: 10),
+                Text(
+                  'Current User Type: ${_userTypeController.text}',
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(height: 20),
                 TextField(
                   controller: _emailController,
-                  decoration: InputDecoration(labelText: 'New Email'),
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelText: 'New Email',
+                    labelStyle: TextStyle(color: Colors.white),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                  ),
                 ),
                 SizedBox(height: 10),
                 TextField(
                   controller: _userTypeController,
-                  decoration: InputDecoration(labelText: 'New User Type'),
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelText: 'New User Type',
+                    labelStyle: TextStyle(color: Colors.white),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                  ),
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
                     updateUserDetails();
                   },
+                  style: ElevatedButton.styleFrom(
+                    primary: lightBlue,
+                  ),
                   child: Text('Update Details'),
                 ),
               ],

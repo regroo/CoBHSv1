@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+const Color darkBlue = Color(0xff555dbe);
+const Color lightBlue = Color(0xFF8C9EFF);
+
 class SetBookingTimes extends StatefulWidget {
   @override
   _SetBookingTimesState createState() => _SetBookingTimesState();
@@ -26,83 +29,99 @@ class _SetBookingTimesState extends State<SetBookingTimes> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: darkBlue,
         title: Text("Set Booking Times"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Select start and end times:'),
-            Row(
-              children: [
-                Expanded(
-                  child: DropdownButtonFormField<String>(
-                    value: selectedStartTime,
-                    onChanged: (value) {
-                      setState(() {
-                        selectedStartTime = value!;
-                      });
-                    },
-                    items: startTimes.map((time) {
-                      return DropdownMenuItem<String>(
-                        value: time,
-                        child: Text(time),
-                      );
-                    }).toList(),
-                  ),
-                ),
-                SizedBox(width: 20),
-                Expanded(
-                  child: DropdownButtonFormField<String>(
-                    value: selectedEndTime,
-                    onChanged: (value) {
-                      setState(() {
-                        selectedEndTime = value!;
-                      });
-                    },
-                    items: endTimes.map((time) {
-                      return DropdownMenuItem<String>(
-                        value: time,
-                        child: Text(time),
-                      );
-                    }).toList(),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 20),
-            Text('Select days of the week:'),
-            Wrap(
-              children: daysOfWeek.map((day) {
-                return Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Checkbox(
-                      value: selectedDays.contains(day),
+      body: Container(
+        color: darkBlue,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Select start and end times:',
+                style: TextStyle(color: Colors.white),
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: DropdownButtonFormField<String>(
+                      value: selectedStartTime,
                       onChanged: (value) {
                         setState(() {
-                          if (value != null && value) {
-                            selectedDays.add(day);
-                          } else {
-                            selectedDays.remove(day);
-                          }
+                          selectedStartTime = value!;
                         });
                       },
+                      items: startTimes.map((time) {
+                        return DropdownMenuItem<String>(
+                          value: time,
+                          child:
+                              Text(time, style: TextStyle(color: Colors.white)),
+                        );
+                      }).toList(),
                     ),
-                    Text(day),
-                  ],
-                );
-              }).toList(),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                _saveBookingTimes();
-              },
-              child: Text('Save Booking Times'),
-            ),
-          ],
+                  ),
+                  SizedBox(width: 20),
+                  Expanded(
+                    child: DropdownButtonFormField<String>(
+                      value: selectedEndTime,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedEndTime = value!;
+                        });
+                      },
+                      items: endTimes.map((time) {
+                        return DropdownMenuItem<String>(
+                          value: time,
+                          child:
+                              Text(time, style: TextStyle(color: Colors.white)),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
+              Text(
+                'Select days of the week:',
+                style: TextStyle(color: Colors.white),
+              ),
+              Wrap(
+                children: daysOfWeek.map((day) {
+                  return Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Checkbox(
+                        value: selectedDays.contains(day),
+                        onChanged: (value) {
+                          setState(() {
+                            if (value != null && value) {
+                              selectedDays.add(day);
+                            } else {
+                              selectedDays.remove(day);
+                            }
+                          });
+                        },
+                      ),
+                      Text(day, style: TextStyle(color: Colors.white)),
+                    ],
+                  );
+                }).toList(),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  _saveBookingTimes();
+                },
+                child: Text('Save Booking Times',
+                    style: TextStyle(color: darkBlue)),
+                style: ElevatedButton.styleFrom(
+                  primary: lightBlue,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -116,12 +135,16 @@ class _SetBookingTimesState extends State<SetBookingTimes> {
         'selectedEndTime': selectedEndTime,
       });
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Booking times saved successfully')),
+        SnackBar(
+            content: Text('Booking times saved successfully',
+                style: TextStyle(color: darkBlue))),
       );
     } catch (error) {
       print('Error saving booking times: $error');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to save booking times')),
+        SnackBar(
+            content: Text('Failed to save booking times',
+                style: TextStyle(color: darkBlue))),
       );
     }
   }

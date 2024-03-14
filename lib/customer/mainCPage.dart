@@ -5,8 +5,8 @@ import 'createBookingPage.dart';
 import 'cancelBookingPage.dart';
 import 'submitFeedbackPage.dart';
 
-const Color darkBlue = Color(0xac3884d4);
-const Color lightBlue = Color(0x485788b7);
+const Color darkBlue = Color(0xFF555DBE); // Updated dark blue color
+const Color lightBlue = Color(0xFF8C9EFF); // Updated light blue color
 
 class MainCPage extends StatelessWidget {
   @override
@@ -14,6 +14,7 @@ class MainCPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("CoBHS Customer"),
+        backgroundColor: darkBlue, // Setting app bar color to dark blue
       ),
       drawer: Drawer(
         child: Container(
@@ -21,10 +22,16 @@ class MainCPage extends StatelessWidget {
           child: ListView(
             children: [
               DrawerHeader(
-                child: Text("Customer Menu"),
+                child: Text(
+                  "Customer Menu",
+                  style: TextStyle(color: Colors.white), // Making text white
+                ),
               ),
               ListTile(
-                title: Text("View Bookings"),
+                title: Text(
+                  "View Bookings",
+                  style: TextStyle(color: Colors.white), // Making text white
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -33,7 +40,10 @@ class MainCPage extends StatelessWidget {
                 },
               ),
               ListTile(
-                title: Text("Create Booking"),
+                title: Text(
+                  "Create Booking",
+                  style: TextStyle(color: Colors.white), // Making text white
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -43,7 +53,10 @@ class MainCPage extends StatelessWidget {
                 },
               ),
               ListTile(
-                title: Text("Cancel Booking"),
+                title: Text(
+                  "Cancel Booking",
+                  style: TextStyle(color: Colors.white), // Making text white
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -53,7 +66,10 @@ class MainCPage extends StatelessWidget {
                 },
               ),
               ListTile(
-                title: Text("Submit Feedback"),
+                title: Text(
+                  "Submit Feedback",
+                  style: TextStyle(color: Colors.white), // Making text white
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -63,7 +79,10 @@ class MainCPage extends StatelessWidget {
                 },
               ),
               ListTile(
-                title: Text("Switch Accounts"),
+                title: Text(
+                  "Switch Accounts",
+                  style: TextStyle(color: Colors.white), // Making text white
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -76,15 +95,12 @@ class MainCPage extends StatelessWidget {
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [darkBlue, lightBlue],
-          ),
-        ),
+        color: darkBlue, // Setting solid dark blue color for the body
         child: Center(
-          child: Text("Main Admin Page Content"),
+          child: Text(
+            "Main Admin Page Content",
+            style: TextStyle(color: Colors.white), // Making text white
+          ),
         ),
       ),
     );

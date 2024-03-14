@@ -9,14 +9,15 @@ import 'deleteAccount.dart';
 import 'changePass.dart';
 import 'setBookingTimes.dart';
 
-const Color darkBlue = Color(0xac3884d4);
-const Color lightBlue = Color(0x485788b7);
+const Color darkBlue = Color(0xFF555DBE); // Updated dark blue color
+const Color lightBlue = Color(0xFF8C9EFF); // Updated light blue color
 
 class MainAPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: darkBlue, // Updated app bar color
         title: Text("CoBHS Admin"),
       ),
       drawer: Drawer(
@@ -25,10 +26,16 @@ class MainAPage extends StatelessWidget {
           child: ListView(
             children: [
               DrawerHeader(
-                child: Text("Admin Menu"),
+                child: Text(
+                  "Admin Menu",
+                  style: TextStyle(color: Colors.white), // Making text white
+                ),
               ),
               ListTile(
-                title: Text("Approve Feedback"),
+                title: Text(
+                  "Approve Feedback",
+                  style: TextStyle(color: Colors.white), // Making text white
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -38,7 +45,10 @@ class MainAPage extends StatelessWidget {
                 },
               ),
               ListTile(
-                title: Text("Cancel Booking"),
+                title: Text(
+                  "Cancel Booking",
+                  style: TextStyle(color: Colors.white), // Making text white
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -48,7 +58,10 @@ class MainAPage extends StatelessWidget {
                 },
               ),
               ListTile(
-                title: Text("Create Payslip"),
+                title: Text(
+                  "Create Payslip",
+                  style: TextStyle(color: Colors.white), // Making text white
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -58,7 +71,10 @@ class MainAPage extends StatelessWidget {
                 },
               ),
               ListTile(
-                title: Text("Change Details"),
+                title: Text(
+                  "Change Details",
+                  style: TextStyle(color: Colors.white), // Making text white
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -68,7 +84,10 @@ class MainAPage extends StatelessWidget {
                 },
               ),
               ListTile(
-                title: Text("Create Account"),
+                title: Text(
+                  "Create Account",
+                  style: TextStyle(color: Colors.white), // Making text white
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -78,7 +97,10 @@ class MainAPage extends StatelessWidget {
                 },
               ),
               ListTile(
-                title: Text("Delete Account"),
+                title: Text(
+                  "Delete Account",
+                  style: TextStyle(color: Colors.white), // Making text white
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -88,7 +110,10 @@ class MainAPage extends StatelessWidget {
                 },
               ),
               ListTile(
-                title: Text("Change Password"),
+                title: Text(
+                  "Change Password",
+                  style: TextStyle(color: Colors.white), // Making text white
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -97,7 +122,10 @@ class MainAPage extends StatelessWidget {
                 },
               ),
               ListTile(
-                title: Text("Set Booking times"),
+                title: Text(
+                  "Set Booking times",
+                  style: TextStyle(color: Colors.white), // Making text white
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -106,7 +134,10 @@ class MainAPage extends StatelessWidget {
                 },
               ),
               ListTile(
-                title: Text("Switch Accounts"),
+                title: Text(
+                  "Switch Accounts",
+                  style: TextStyle(color: Colors.white), // Making text white
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -119,15 +150,12 @@ class MainAPage extends StatelessWidget {
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [darkBlue, lightBlue],
-          ),
-        ),
+        color: darkBlue, // Setting solid dark blue color for the body
         child: Center(
-          child: Text("Main Admin Page Content"),
+          child: Text(
+            "Main Admin Page Content",
+            style: TextStyle(color: Colors.white), // Making text white
+          ),
         ),
       ),
     );

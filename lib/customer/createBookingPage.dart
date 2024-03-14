@@ -4,6 +4,9 @@ import 'dart:math';
 
 import 'package:cobhs/globals.dart';
 
+const Color darkBlue = Color(0xff555dbe);
+const Color lightBlue = Color(0xFF8C9EFF);
+
 class CreateBookingPage extends StatefulWidget {
   @override
   _CreateBookingPageState createState() => _CreateBookingPageState();
@@ -178,15 +181,24 @@ class _CreateBookingPageState extends State<CreateBookingPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Create Booking"),
+        backgroundColor: darkBlue,
       ),
+      backgroundColor: darkBlue, // Set background color here
       body: isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? Center(
+              child: CircularProgressIndicator(
+                backgroundColor: darkBlue,
+              ),
+            )
           : Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Select Time Slot:'),
+                  Text(
+                    'Select Time Slot:',
+                    style: TextStyle(color: Colors.white),
+                  ),
                   SizedBox(height: 10),
                   DropdownButtonFormField<String>(
                     value: selectedTimeSlot,
@@ -195,17 +207,48 @@ class _CreateBookingPageState extends State<CreateBookingPage> {
                         selectedTimeSlot = value;
                       });
                     },
-                    items: timeSlots.map((timeSlot) {
-                      return DropdownMenuItem<String>(
-                        value: timeSlot,
-                        child: Text(timeSlot),
-                      );
-                    }).toList(),
+                    items: [
+                      DropdownMenuItem(
+                        value: null,
+                        child: SizedBox(),
+                      ),
+                      for (String timeSlot in timeSlots)
+                        DropdownMenuItem(
+                          value: timeSlot,
+                          child: Text(
+                            timeSlot,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                    ],
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                      filled: true,
+                      fillColor: darkBlue,
+                    ),
+                    dropdownColor:
+                        darkBlue, // Set dropdown menu background color
+                    isExpanded:
+                        true, // Ensure dropdown menu expands to fit content
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: _createBooking,
-                    child: Text('Book Appointment'),
+                    child: Text(
+                      'Book Appointment',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: lightBlue,
+                    ),
                   ),
                 ],
               ),

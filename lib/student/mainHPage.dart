@@ -1,8 +1,9 @@
+import 'package:cobhs/student/viewBookings.dart';
 import 'package:flutter/material.dart';
 import 'package:cobhs/start/loginPage.dart';
 
-const Color darkBlue = Color(0xac3884d4);
-const Color lightBlue = Color(0x485788b7);
+const Color darkBlue = Color(0xff555dbe); // Updated dark blue color
+const Color lightBlue = Color(0xFF8C9EFF); // Updated light blue color
 
 class MainHPage extends StatelessWidget {
   @override
@@ -10,6 +11,7 @@ class MainHPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("CoBHS Student"),
+        backgroundColor: darkBlue, // Setting app bar color to dark blue
       ),
       drawer: Drawer(
         child: Container(
@@ -17,34 +19,43 @@ class MainHPage extends StatelessWidget {
           child: ListView(
             children: [
               DrawerHeader(
-                child: Text("Student Menu"),
+                child: Text("Student Menu",
+                    style: TextStyle(color: Colors.white)), // Making text white
               ),
               ListTile(
-                title: Text("View Timetable"),
+                title: Text("View Timetable",
+                    style: TextStyle(color: Colors.white)), // Making text white
                 onTap: () {
-                  // Navigate to the approve feedback page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ViewBookings()),
+                  );
                 },
               ),
               ListTile(
-                title: Text("Cancel Booking"),
+                title: Text("Cancel Booking",
+                    style: TextStyle(color: Colors.white)), // Making text white
                 onTap: () {
                   // Navigate to the cancel booking page
                 },
               ),
               ListTile(
-                title: Text("View Payslip"),
+                title: Text("View Payslip",
+                    style: TextStyle(color: Colors.white)), // Making text white
                 onTap: () {
                   // Navigate to the create payslip page
                 },
               ),
               ListTile(
-                title: Text("View Feedback"),
+                title: Text("View Feedback",
+                    style: TextStyle(color: Colors.white)), // Making text white
                 onTap: () {
                   // Navigate to the change details page
                 },
               ),
               ListTile(
-                title: Text("Switch Accounts"),
+                title: Text("Switch Accounts",
+                    style: TextStyle(color: Colors.white)), // Making text white
                 onTap: () {
                   Navigator.push(
                     context,
@@ -57,15 +68,10 @@ class MainHPage extends StatelessWidget {
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [darkBlue, lightBlue],
-          ),
-        ),
+        color: darkBlue, // Setting solid color background to dark blue
         child: Center(
-          child: Text("Main Admin Page Content"),
+          child: Text("Main Admin Page Content",
+              style: TextStyle(color: Colors.white)), // Making text white
         ),
       ),
     );

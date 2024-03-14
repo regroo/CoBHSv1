@@ -8,8 +8,8 @@ import 'package:cobhs/customer/mainCPage.dart';
 import 'package:cobhs/student/mainHPage.dart';
 import 'package:cobhs/globals.dart';
 
-const Color darkBlue = Color(0xac3884d4);
-const Color lightBlue = Color(0x485788b7);
+const Color darkBlue = Color(0xff555dbe);
+const Color lightBlue = Color(0xFF8C9EFF);
 
 class LoginPage extends StatefulWidget {
   @override
@@ -48,16 +48,19 @@ class _LoginPageState extends State<LoginPage> {
         if (userPasswordHash == hashedPassword && userType == 0) {
           Globals.currentUsername =
               enteredUsername; // Access Globals and set currentUsername
+          Globals.currentUserID = userDocument.id;
           _showMessage(context, "Admin Login Successful!");
         }
         if (userPasswordHash == hashedPassword && userType == 1) {
           Globals.currentUsername =
               enteredUsername; // Access Globals and set currentUsername
+          Globals.currentUserID = userDocument.id;
           _showMessage(context, "Customer Login Successful!");
         }
         if (userPasswordHash == hashedPassword && userType == 2) {
           Globals.currentUsername =
               enteredUsername; // Access Globals and set currentUsername
+          Globals.currentUserID = userDocument.id;
           _showMessage(context, "Student Login Successful!");
         }
         if (userPasswordHash != hashedPassword) {
@@ -113,51 +116,84 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("City of Bristol Hair Salon"),
+        backgroundColor: darkBlue,
+        title: Text(""),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [darkBlue, lightBlue],
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextField(
-                controller: loginUsernameController,
-                decoration: InputDecoration(labelText: "Username"),
-              ),
-              SizedBox(height: 16),
-              TextField(
-                controller: loginPasswordController,
-                obscureText: true,
-                decoration: InputDecoration(labelText: "Password"),
-              ),
-              SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ElevatedButton(
-                    onPressed: _login,
-                    child: Text("Login"),
+      backgroundColor: darkBlue,
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(32.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "City of Bristol Hair Salon",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => RegisterPage()),
-                      );
-                    },
-                    child: Text("Sign up"),
+                ),
+                SizedBox(height: 40),
+                TextField(
+                  controller: loginUsernameController,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelText: "Username",
+                    labelStyle: TextStyle(color: Colors.white),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
                   ),
-                ],
-              ),
-            ],
+                ),
+                SizedBox(height: 16),
+                TextField(
+                  controller: loginPasswordController,
+                  obscureText: true,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelText: "Password",
+                    labelStyle: TextStyle(color: Colors.white),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton(
+                      onPressed: _login,
+                      style: ElevatedButton.styleFrom(
+                        primary: lightBlue,
+                      ),
+                      child: Text("Login"),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RegisterPage()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: lightBlue,
+                      ),
+                      child: Text("Sign up"),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,24 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+const Color darkBlue = Color(0xff555dbe);
+const Color lightBlue = Color(0xFF8C9EFF);
+
 class ApproveFeedbackPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: darkBlue,
         title: Text("Approve Feedback"),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xac3884d4), // darkBlue
-              Color(0x485788b7), // lightBlue
-            ],
-          ),
-        ),
+        color: darkBlue, // Setting background color to just dark blue
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -52,7 +47,7 @@ class _FeedbackListState extends State<FeedbackList> {
           print('Error fetching feedback: ${snapshot.error}');
           return Text(
             'An error occurred. Please try again later.',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           );
         } else if (snapshot.data == null || snapshot.data!.docs.isEmpty) {
           return Text(
@@ -60,7 +55,7 @@ class _FeedbackListState extends State<FeedbackList> {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Colors.black,
+              color: Colors.white,
             ),
           );
         } else {
@@ -72,10 +67,10 @@ class _FeedbackListState extends State<FeedbackList> {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('User: $userName', style: TextStyle(color: Colors.black)),
+              Text('User: $userName', style: TextStyle(color: Colors.white)),
               SizedBox(height: 20),
               Text('Feedback: $feedbackText',
-                  style: TextStyle(color: Colors.black)),
+                  style: TextStyle(color: Colors.white)),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {

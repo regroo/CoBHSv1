@@ -4,8 +4,8 @@ import 'package:cobhs/firebase/firebase_options.dart';
 import 'package:cobhs/start/loginPage.dart';
 import 'package:cobhs/globals.dart';
 
-const Color darkBlue = Color(0xac3884d4);
-const Color lightBlue = Color(0x485788b7);
+const Color darkBlue = Color(0xff555dbe);
+const Color lightBlue = Color(0xFF8C9EFF);
 
 const messageLimit = 30;
 
@@ -66,18 +66,12 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('')),
+      appBar: AppBar(
+        title: Text(''),
+        backgroundColor: darkBlue,
+      ),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              darkBlue,
-              lightBlue,
-            ],
-          ),
-        ),
+        color: darkBlue,
         child: Center(
           child: Padding(
             padding:
@@ -87,7 +81,10 @@ class LoadingScreen extends StatelessWidget {
               children: [
                 Text(
                   "City of Bristol Hair Salon",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 80),
@@ -126,18 +123,10 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(""),
+        backgroundColor: darkBlue,
       ),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              darkBlue,
-              lightBlue,
-            ],
-          ),
-        ),
+        color: darkBlue,
         child: Center(
           child: Padding(
             padding:
@@ -147,7 +136,10 @@ class _MainPageState extends State<MainPage> {
               children: [
                 Text(
                   "City of Bristol Hair Salon",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 80),

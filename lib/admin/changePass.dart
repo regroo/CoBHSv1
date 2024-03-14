@@ -3,6 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
 
+const Color darkBlue = Color(0xff555dbe);
+const Color lightBlue = Color(0xFF8C9EFF);
+
 class ChangePassPage extends StatefulWidget {
   @override
   _ChangePassPageState createState() => _ChangePassPageState();
@@ -19,18 +22,10 @@ class _ChangePassPageState extends State<ChangePassPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Change Password"),
+        backgroundColor: darkBlue,
       ),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xac3884d4),
-              Color(0x485788b7), // Adjust light blue color
-            ],
-          ),
-        ),
+        color: darkBlue,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -38,19 +33,58 @@ class _ChangePassPageState extends State<ChangePassPage> {
             children: [
               TextField(
                 controller: _usernameController,
-                decoration: InputDecoration(labelText: 'Username'),
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: 'Username',
+                  labelStyle: TextStyle(color: Colors.white),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
               ),
               SizedBox(height: 10),
               TextField(
                 controller: _newPasswordController,
                 obscureText: true,
-                decoration: InputDecoration(labelText: 'New Password'),
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: 'New Password',
+                  labelStyle: TextStyle(color: Colors.white),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
               ),
               SizedBox(height: 10),
               TextField(
                 controller: _confirmPasswordController,
                 obscureText: true,
-                decoration: InputDecoration(labelText: 'Confirm New Password'),
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: 'Confirm New Password',
+                  labelStyle: TextStyle(color: Colors.white),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
               ),
               SizedBox(height: 20),
               ElevatedButton(
@@ -58,6 +92,9 @@ class _ChangePassPageState extends State<ChangePassPage> {
                   changePassword();
                 },
                 child: Text('Change Password'),
+                style: ElevatedButton.styleFrom(
+                  primary: lightBlue,
+                ),
               ),
             ],
           ),

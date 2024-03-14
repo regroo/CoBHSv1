@@ -56,10 +56,14 @@ class _SetBookingTimesState extends State<SetBookingTimes> {
                       items: startTimes.map((time) {
                         return DropdownMenuItem<String>(
                           value: time,
-                          child:
-                              Text(time, style: TextStyle(color: Colors.white)),
+                          child: Text(
+                            time,
+                            style: TextStyle(color: Colors.white),
+                          ),
                         );
                       }).toList(),
+                      dropdownColor:
+                          darkBlue, // Set dropdown menu background color
                     ),
                   ),
                   SizedBox(width: 20),
@@ -74,10 +78,14 @@ class _SetBookingTimesState extends State<SetBookingTimes> {
                       items: endTimes.map((time) {
                         return DropdownMenuItem<String>(
                           value: time,
-                          child:
-                              Text(time, style: TextStyle(color: Colors.white)),
+                          child: Text(
+                            time,
+                            style: TextStyle(color: Colors.white),
+                          ),
                         );
                       }).toList(),
+                      dropdownColor:
+                          darkBlue, // Set dropdown menu background color
                     ),
                   ),
                 ],

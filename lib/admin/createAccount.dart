@@ -3,6 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
 
+const Color darkBlue = Color(0xff555dbe);
+const Color lightBlue = Color(0xFF8C9EFF);
+
 class CreateAccountPage extends StatefulWidget {
   @override
   _CreateAccountPageState createState() => _CreateAccountPageState();
@@ -19,18 +22,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Create Account"),
+        backgroundColor: darkBlue,
       ),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xac3884d4),
-              Color(0x485788b7), // Adjust light blue color
-            ],
-          ),
-        ),
+        color: darkBlue,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -38,18 +33,57 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             children: [
               TextField(
                 controller: _usernameController,
-                decoration: InputDecoration(labelText: 'Username'),
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: 'Username',
+                  labelStyle: TextStyle(color: Colors.white),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
               ),
               SizedBox(height: 10),
               TextField(
                 controller: _passwordController,
                 obscureText: true,
-                decoration: InputDecoration(labelText: 'Password'),
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  labelStyle: TextStyle(color: Colors.white),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
               ),
               SizedBox(height: 10),
               TextField(
                 controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  labelStyle: TextStyle(color: Colors.white),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
               ),
               SizedBox(height: 10),
               DropdownButtonFormField<String>(
@@ -57,15 +91,17 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 items: [
                   DropdownMenuItem<String>(
                     value: 'admin',
-                    child: Text('Admin'),
+                    child: Text('Admin', style: TextStyle(color: Colors.white)),
                   ),
                   DropdownMenuItem<String>(
                     value: 'customer',
-                    child: Text('Customer'),
+                    child:
+                        Text('Customer', style: TextStyle(color: Colors.white)),
                   ),
                   DropdownMenuItem<String>(
                     value: 'student',
-                    child: Text('Student'),
+                    child:
+                        Text('Student', style: TextStyle(color: Colors.white)),
                   ),
                 ],
                 onChanged: (value) {
@@ -73,7 +109,20 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                     _userType = value!;
                   });
                 },
-                decoration: InputDecoration(labelText: 'User Type'),
+                dropdownColor: darkBlue, // Set dropdown menu background color
+                decoration: InputDecoration(
+                  labelText: 'User Type',
+                  labelStyle: TextStyle(color: Colors.white),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
               ),
               SizedBox(height: 20),
               ElevatedButton(
@@ -81,6 +130,9 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   createAccount();
                 },
                 child: Text('Create Account'),
+                style: ElevatedButton.styleFrom(
+                  primary: lightBlue,
+                ),
               ),
             ],
           ),

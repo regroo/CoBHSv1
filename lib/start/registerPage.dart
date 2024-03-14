@@ -1,12 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
 import 'loginPage.dart';
 
-const Color darkBlue = Color(0xac3884d4);
-const Color lightBlue = Color(0x485788b7);
+const Color darkBlue = Color(0xff555dbe);
+const Color lightBlue = Color(0xFF8C9EFF);
 
 class RegisterPage extends StatelessWidget {
   final TextEditingController registerNameController;
@@ -101,15 +101,10 @@ class RegisterPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Register"),
+        backgroundColor: darkBlue,
       ),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [darkBlue, lightBlue],
-          ),
-        ),
+        color: darkBlue,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -117,18 +112,57 @@ class RegisterPage extends StatelessWidget {
             children: [
               TextField(
                 controller: registerNameController,
-                decoration: InputDecoration(labelText: "Username"),
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: "Username",
+                  labelStyle: TextStyle(color: Colors.white),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
               ),
               SizedBox(height: 16),
               TextField(
                 controller: registerUsernameController,
-                decoration: InputDecoration(labelText: "Email"),
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: "Email",
+                  labelStyle: TextStyle(color: Colors.white),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
               ),
               SizedBox(height: 16),
               TextField(
                 controller: registerPasswordController,
                 obscureText: true,
-                decoration: InputDecoration(labelText: "Password"),
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: "Password",
+                  labelStyle: TextStyle(color: Colors.white),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
               ),
               SizedBox(height: 16),
               ElevatedButton(
@@ -136,6 +170,9 @@ class RegisterPage extends StatelessWidget {
                   _register(context);
                 },
                 child: Text("Register"),
+                style: ElevatedButton.styleFrom(
+                  primary: lightBlue,
+                ),
               ),
             ],
           ),

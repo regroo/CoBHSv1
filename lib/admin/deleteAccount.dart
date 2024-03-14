@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+const Color darkBlue = Color(0xFF555DBE); // Adjusted dark blue color
+const Color lightBlue = Color(0xFF8C9EFF);
+
 class DeleteAccountPage extends StatefulWidget {
   @override
   _DeleteAccountPageState createState() => _DeleteAccountPageState();
@@ -15,18 +18,10 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Delete Account"),
+        backgroundColor: darkBlue,
       ),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xac3884d4),
-              Color(0x485788b7), // Adjust light blue color
-            ],
-          ),
-        ),
+        color: darkBlue,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -39,7 +34,17 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
                     _buttonClicked = false; // Reset button state
                   });
                 },
-                decoration: InputDecoration(labelText: 'Username'),
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: 'Username',
+                  labelStyle: TextStyle(color: Colors.white),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
               ),
               SizedBox(height: 20),
               ElevatedButton(
@@ -53,12 +58,12 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
                         });
                       },
                 style: ElevatedButton.styleFrom(
-                  primary: _buttonClicked
-                      ? Colors.red
-                      : Theme.of(context).primaryColor,
+                  primary: _buttonClicked ? Colors.red : darkBlue,
                 ),
-                child:
-                    Text(_buttonClicked ? 'Confirm Delete' : 'Delete Account'),
+                child: Text(
+                  _buttonClicked ? 'Confirm Delete' : 'Delete Account',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ],
           ),

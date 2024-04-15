@@ -1,5 +1,5 @@
-import 'package:cobhs/start/loginPage.dart';
 import 'package:flutter/material.dart';
+import 'package:cobhs/start/loginPage.dart';
 import 'approveFeedback.dart';
 import 'cancelBooking.dart';
 import 'createPayslip.dart';
@@ -24,142 +24,146 @@ class MainAPage extends StatelessWidget {
       drawer: Drawer(
         child: Container(
           color: darkBlue, // Setting solid color background for the drawer
-          child: ListView(
-            children: [
-              DrawerHeader(
-                child: Text(
-                  "Admin Menu",
-                  style: TextStyle(color: Colors.white), // Making text white
+          child: SingleChildScrollView(
+            // Wrapping ListView with SingleChildScrollView
+            child: Column(
+              children: [
+                DrawerHeader(
+                  child: Text(
+                    "Admin Menu",
+                    style: TextStyle(color: Colors.white), // Making text white
+                  ),
                 ),
-              ),
-              ListTile(
-                title: Text(
-                  "Approve Feedback",
-                  style: TextStyle(color: Colors.white), // Making text white
+                ListTile(
+                  title: Text(
+                    "Approve Feedback",
+                    style: TextStyle(color: Colors.white), // Making text white
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ApproveFeedbackPage()),
+                    );
+                  },
                 ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ApproveFeedbackPage()),
-                  );
-                },
-              ),
-              ListTile(
-                title: Text(
-                  "Cancel Booking",
-                  style: TextStyle(color: Colors.white), // Making text white
+                ListTile(
+                  title: Text(
+                    "Cancel Booking",
+                    style: TextStyle(color: Colors.white), // Making text white
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CancelBookingPage()),
+                    );
+                  },
                 ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CancelBookingPage()),
-                  );
-                },
-              ),
-              ListTile(
-                title: Text(
-                  "Create Payslip",
-                  style: TextStyle(color: Colors.white), // Making text white
+                ListTile(
+                  title: Text(
+                    "Create Payslip",
+                    style: TextStyle(color: Colors.white), // Making text white
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CreatePayslipPage()),
+                    );
+                  },
                 ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CreatePayslipPage()),
-                  );
-                },
-              ),
-              ListTile(
-                title: Text(
-                  "Change Details",
-                  style: TextStyle(color: Colors.white), // Making text white
+                ListTile(
+                  title: Text(
+                    "Change Details",
+                    style: TextStyle(color: Colors.white), // Making text white
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ChangeDetailsPage()),
+                    );
+                  },
                 ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ChangeDetailsPage()),
-                  );
-                },
-              ),
-              ListTile(
-                title: Text(
-                  "Create Account",
-                  style: TextStyle(color: Colors.white), // Making text white
+                ListTile(
+                  title: Text(
+                    "Create Account",
+                    style: TextStyle(color: Colors.white), // Making text white
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CreateAccountPage()),
+                    );
+                  },
                 ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CreateAccountPage()),
-                  );
-                },
-              ),
-              ListTile(
-                title: Text(
-                  "Delete Account",
-                  style: TextStyle(color: Colors.white), // Making text white
+                ListTile(
+                  title: Text(
+                    "Delete Account",
+                    style: TextStyle(color: Colors.white), // Making text white
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DeleteAccountPage()),
+                    );
+                  },
                 ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => DeleteAccountPage()),
-                  );
-                },
-              ),
-              ListTile(
-                title: Text(
-                  "Change Password",
-                  style: TextStyle(color: Colors.white), // Making text white
+                ListTile(
+                  title: Text(
+                    "Change Password",
+                    style: TextStyle(color: Colors.white), // Making text white
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ChangePassPage()),
+                    );
+                  },
                 ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ChangePassPage()),
-                  );
-                },
-              ),
-              ListTile(
-                title: Text(
-                  "Set Booking times",
-                  style: TextStyle(color: Colors.white), // Making text white
+                ListTile(
+                  title: Text(
+                    "Set Booking times",
+                    style: TextStyle(color: Colors.white), // Making text white
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SetBookingTimes()),
+                    );
+                  },
                 ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SetBookingTimes()),
-                  );
-                },
-              ),
-              ListTile(
-                title: Text(
-                  "View all bookings",
-                  style: TextStyle(color: Colors.white), // Making text white
+                ListTile(
+                  title: Text(
+                    "View all bookings",
+                    style: TextStyle(color: Colors.white), // Making text white
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ViewAllBookings()),
+                    );
+                  },
                 ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ViewAllBookings()),
-                  );
-                },
-              ),
-              ListTile(
-                title: Text(
-                  "Switch Accounts",
-                  style: TextStyle(color: Colors.white), // Making text white
+                ListTile(
+                  title: Text(
+                    "Switch Accounts",
+                    style: TextStyle(color: Colors.white), // Making text white
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
+                  },
                 ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
-                  );
-                },
-              ),
-              SizedBox(height: 20), // Add some space below the list items
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -8,6 +8,7 @@ import 'createAccount.dart';
 import 'deleteAccount.dart';
 import 'changePass.dart';
 import 'setBookingTimes.dart';
+import 'viewAllBookings.dart';
 
 const Color darkBlue = Color(0xFF555DBE); // Updated dark blue color
 const Color lightBlue = Color(0xFF8C9EFF); // Updated light blue color
@@ -135,6 +136,18 @@ class MainAPage extends StatelessWidget {
               ),
               ListTile(
                 title: Text(
+                  "View all bookings",
+                  style: TextStyle(color: Colors.white), // Making text white
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ViewAllBookings()),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text(
                   "Switch Accounts",
                   style: TextStyle(color: Colors.white), // Making text white
                 ),
@@ -145,6 +158,7 @@ class MainAPage extends StatelessWidget {
                   );
                 },
               ),
+              SizedBox(height: 20), // Add some space below the list items
             ],
           ),
         ),

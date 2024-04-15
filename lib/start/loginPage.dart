@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController loginUsernameController = TextEditingController();
   TextEditingController loginPasswordController = TextEditingController();
 
-  void _login() async {
+  void _login(BuildContext context) async {
     String enteredUsername = loginUsernameController.text;
     String enteredPassword = loginPasswordController.text;
 
@@ -49,67 +49,48 @@ class _LoginPageState extends State<LoginPage> {
           Globals.currentUsername =
               enteredUsername; // Access Globals and set currentUsername
           Globals.currentUserID = userDocument.id;
-          _showMessage(context, "Admin Login Successful!");
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MainAPage()),
+          );
         }
         if (userPasswordHash == hashedPassword && userType == 1) {
           Globals.currentUsername =
               enteredUsername; // Access Globals and set currentUsername
           Globals.currentUserID = userDocument.id;
-          _showMessage(context, "Customer Login Successful!");
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MainCPage()),
+          );
         }
         if (userPasswordHash == hashedPassword && userType == 2) {
           Globals.currentUsername =
               enteredUsername; // Access Globals and set currentUsername
           Globals.currentUserID = userDocument.id;
-          _showMessage(context, "Student Login Successful!");
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MainHPage()),
+          );
         }
         if (userPasswordHash != hashedPassword) {
-          _showMessage(
+          _showSnackBar(
               context, "Invalid username or password. Please try again.");
         }
       } else {
-        _showMessage(
+        _showSnackBar(
             context, "Invalid username or password. Please try again.");
       }
     } catch (e) {
-      _showMessage(context, "Login failed. Error: $e");
+      _showSnackBar(context, "Login failed. Error: $e");
     }
   }
 
-  void _showMessage(BuildContext context, String message) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text("Message"),
-          content: Text(message),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context); // Close the dialog
-                if (message == "Admin Login Successful!") {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MainAPage()),
-                  );
-                } else if (message == "Customer Login Successful!") {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MainCPage()),
-                  );
-                } else if (message == "Student Login Successful!") {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MainHPage()),
-                  );
-                }
-              },
-              child: Text("OK"),
-            ),
-          ],
-        );
-      },
+  void _showSnackBar(BuildContext context, String message) {
+    final snackBar = SnackBar(
+      content: Text(message),
+      duration: Duration(seconds: 3),
     );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
@@ -171,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     ElevatedButton(
-                      onPressed: _login,
+                      onPressed: () => _login(context),
                       style: ElevatedButton.styleFrom(
                         primary: lightBlue,
                       ),

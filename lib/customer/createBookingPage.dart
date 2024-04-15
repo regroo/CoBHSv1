@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'dart:math';
-
 import 'package:cobhs/globals.dart';
+import 'dart:math';
 
 const Color darkBlue = Color(0xff555dbe);
 const Color lightBlue = Color(0xFF8C9EFF);
@@ -13,14 +12,16 @@ class CreateBookingPage extends StatefulWidget {
 }
 
 class _CreateBookingPageState extends State<CreateBookingPage> {
-  List<String> timeSlots = [];
   String? selectedTimeSlot;
+  List<String> timeSlots = [];
   bool isLoading = true;
+  Map<String, List<Map<String, dynamic>>> userBookings = {};
 
   @override
   void initState() {
     super.initState();
     _fetchTimeSlots();
+    _fetchUserBookings();
   }
 
   Future<void> _fetchTimeSlots() async {
@@ -29,73 +30,67 @@ class _CreateBookingPageState extends State<CreateBookingPage> {
     });
 
     try {
-      DocumentSnapshot? timesDocument = await FirebaseFirestore.instance
+      DocumentSnapshot timesDocument = await FirebaseFirestore.instance
           .collection('Bookings')
           .doc('TIMES')
           .get();
 
-      if (timesDocument != null && timesDocument.exists) {
-        Map<String, dynamic>? data =
-            timesDocument.data() as Map<String, dynamic>?;
+      Map<String, dynamic>? data =
+          timesDocument.data() as Map<String, dynamic>?;
 
-        if (data != null) {
-          List<dynamic>? selectedDays = data['selectedDays'] as List<dynamic>?;
+      if (data != null) {
+        List<dynamic>? selectedDays = data['selectedDays'] as List<dynamic>?;
 
-          if (selectedDays != null) {
-            // Access selectedDays here
-            QuerySnapshot userSnapshot = await FirebaseFirestore.instance
-                .collection('Users')
-                .where('userType', isEqualTo: 2)
-                .get();
+        if (selectedDays != null) {
+          DateTime now = DateTime.now();
+          DateTime twoWeeksLater = now.add(Duration(days: 14));
 
-            final List<String> userDocumentIds =
-                userSnapshot.docs.map((doc) => doc.id).toList();
-
-            DateTime now = DateTime.now();
-            DateTime twoWeeksLater = now.add(Duration(days: 14));
-
-            for (DateTime date = now;
-                date.isBefore(twoWeeksLater);
-                date = date.add(Duration(days: 1))) {
-              if (selectedDays.contains(_getDayOfWeek(date))) {
-                for (int hour = 8; hour < 18; hour++) {
-                  String formattedHour = hour.toString().padLeft(2, '0');
-                  String timeSlot =
-                      '${date.year}-${date.month}-${date.day} $formattedHour:00';
-
-                  bool isBooked = true;
-                  for (String userId in userDocumentIds) {
-                    QuerySnapshot existingBooking = await FirebaseFirestore
-                        .instance
-                        .collection('Bookings')
-                        .where('bookingTime', isEqualTo: timeSlot)
-                        .where('userId', isEqualTo: userId)
-                        .get();
-                    if (existingBooking.docs.isEmpty) {
-                      isBooked = false;
-                      break;
-                    }
-                  }
-
-                  if (!isBooked) {
-                    timeSlots.add(timeSlot);
-                  }
-                }
+          for (DateTime date = now;
+              date.isBefore(twoWeeksLater);
+              date = date.add(Duration(days: 1))) {
+            if (selectedDays.contains(_getDayOfWeek(date))) {
+              for (int hour = 8; hour < 18; hour++) {
+                String formattedHour = hour.toString().padLeft(2, '0');
+                String timeSlot =
+                    '${date.year}-${date.month}-${date.day} $formattedHour:00';
+                timeSlots.add(timeSlot);
               }
             }
-
-            setState(() {
-              selectedTimeSlot = timeSlots.isNotEmpty ? timeSlots[0] : null;
-              isLoading = false;
-            });
           }
         }
       }
+
+      setState(() {
+        selectedTimeSlot = timeSlots.isNotEmpty ? timeSlots[0] : null;
+        isLoading = false;
+      });
     } catch (error) {
       print('Error fetching time slots: $error');
       setState(() {
         isLoading = false;
       });
+    }
+  }
+
+  Future<void> _fetchUserBookings() async {
+    try {
+      QuerySnapshot userSnapshot = await FirebaseFirestore.instance
+          .collection('Users')
+          .where('userType', isEqualTo: 2)
+          .get();
+
+      for (QueryDocumentSnapshot userDoc in userSnapshot.docs) {
+        String userId = userDoc.id;
+        QuerySnapshot bookingSnapshot = await FirebaseFirestore.instance
+            .collection('Bookings')
+            .where('userId', isEqualTo: userId)
+            .get();
+        userBookings[userId] = bookingSnapshot.docs
+            .map((doc) => doc.data() as Map<String, dynamic>)
+            .toList();
+      }
+    } catch (error) {
+      print('Error fetching user bookings: $error');
     }
   }
 
@@ -135,13 +130,31 @@ class _CreateBookingPageState extends State<CreateBookingPage> {
         return;
       }
 
-      var randomDocIndex = Random().nextInt(availableUserIds.length);
-      var userId = availableUserIds[randomDocIndex];
+      // Assign weights based on the number of bookings
+      Map<String, double> userWeights = {};
+      for (String userId in availableUserIds) {
+        double weight = 1 /
+            pow(userBookings[userId]!.length + 1, 4); // Exponential weighting
+        userWeights[userId] = weight;
+      }
 
-      await FirebaseFirestore.instance.collection('Bookings').add({
+      // Sort availableUserIds based on weights
+      availableUserIds
+          .sort((a, b) => userWeights[b]!.compareTo(userWeights[a]!));
+
+      var userId = availableUserIds.first;
+
+      // Create booking document
+      DocumentReference bookingRef =
+          await FirebaseFirestore.instance.collection('Bookings').add({
         'bookingTime': selectedTimeSlot,
         'userName': Globals.currentUsername,
         'userId': userId,
+      });
+
+      // Update user document with booking ID
+      await FirebaseFirestore.instance.collection('Users').doc(userId).update({
+        'bookingIds': FieldValue.arrayUnion([bookingRef.id]),
       });
 
       ScaffoldMessenger.of(context).showSnackBar(
@@ -183,7 +196,7 @@ class _CreateBookingPageState extends State<CreateBookingPage> {
         title: Text("Create Booking"),
         backgroundColor: darkBlue,
       ),
-      backgroundColor: darkBlue, // Set background color here
+      backgroundColor: darkBlue,
       body: isLoading
           ? Center(
               child: CircularProgressIndicator(
@@ -207,20 +220,15 @@ class _CreateBookingPageState extends State<CreateBookingPage> {
                         selectedTimeSlot = value;
                       });
                     },
-                    items: [
-                      DropdownMenuItem(
-                        value: null,
-                        child: SizedBox(),
-                      ),
-                      for (String timeSlot in timeSlots)
-                        DropdownMenuItem(
-                          value: timeSlot,
-                          child: Text(
-                            timeSlot,
-                            style: TextStyle(color: Colors.white),
-                          ),
+                    items: timeSlots.map((timeSlot) {
+                      return DropdownMenuItem<String>(
+                        value: timeSlot,
+                        child: Text(
+                          timeSlot,
+                          style: TextStyle(color: Colors.white),
                         ),
-                    ],
+                      );
+                    }).toList(),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
@@ -234,10 +242,8 @@ class _CreateBookingPageState extends State<CreateBookingPage> {
                       filled: true,
                       fillColor: darkBlue,
                     ),
-                    dropdownColor:
-                        darkBlue, // Set dropdown menu background color
-                    isExpanded:
-                        true, // Ensure dropdown menu expands to fit content
+                    dropdownColor: darkBlue,
+                    isExpanded: true,
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(

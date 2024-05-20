@@ -20,6 +20,15 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController loginUsernameController = TextEditingController();
   TextEditingController loginPasswordController = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _showMessageDialog(context, "Welcome!",
+          "Please do not use real passwords/emails as this is a test application");
+    });
+  }
+
   void _login(BuildContext context) async {
     String enteredUsername = loginUsernameController.text;
     String enteredPassword = loginPasswordController.text;
@@ -91,6 +100,26 @@ class _LoginPageState extends State<LoginPage> {
       duration: Duration(seconds: 3),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  void _showMessageDialog(BuildContext context, String title, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
